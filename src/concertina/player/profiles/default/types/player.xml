@@ -35,6 +35,15 @@
 
   <!-- Enabled behaviors -->
   <property name="behaviors" purge="false">
+     <element value="plone.app.dexterity.behaviors.metadata.ICategorization" />
+     <element value="plone.app.dexterity.behaviors.metadata.IPublication" />
+     <element value="plone.app.dexterity.behaviors.metadata.IOwnership" />
+     <!--element value="plone.app.content.interfaces.INameFromTitle" /-->
+     <element value="dexterity.membrane.behavior.user.INameFromFullName" />
+     <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />
+     <element value="dexterity.membrane.behavior.user.IMembraneUser" />
+     <element value="dexterity.membrane.behavior.password.IProvidePasswords" />
+     <!--
     <element value="plone.app.content.interfaces.INameFromTitle"/>
     <element value="plone.app.dexterity.behaviors.discussion.IAllowDiscussion"/>
     <element value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation"/>
@@ -43,8 +52,9 @@
     <element value="plone.app.dexterity.behaviors.metadata.IPublication"/>
     <element value="plone.app.dexterity.behaviors.metadata.ICategorization"/>
     <element value="plone.app.dexterity.behaviors.metadata.IBasic"/>
+    -->
     <!--<element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />-->
-    <element value="plone.app.lockingbehavior.behaviors.ILocking" />
+    <!-- <element value="plone.app.lockingbehavior.behaviors.ILocking" /> -->
     <!--<element value="plone.app.contenttypes.behaviors.leadimage.ILeadImage"/>-->
     <!--<element value="plone.app.relationfield.behavior.IRelatedItems"/>-->
     <!--<element value="plone.app.versioningbehavior.behaviors.IVersionable" />-->
@@ -93,7 +103,6 @@
   <action
       action_id="edit"
       category="object"
-      condition_expr="not:object/@@plone_lock_info/is_locked_for_current_user|python:True"
       i18n:attributes="title"
       title="Edit"
       url_expr="string:${object_url}/edit"
@@ -101,4 +110,6 @@
     <permission value="Modify portal content"/>
   </action>
 
+<!--       condition_expr="not:object/@@plone_lock_info/is_locked_for_current_user|python:True"
+ -->
 </object>
