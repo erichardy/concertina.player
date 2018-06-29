@@ -6,6 +6,12 @@
   <configure zcml:condition="installed AccessControl.security">
   <!-- -*- extra stuff goes here -*- -->
 
+    <permission
+        id="concertina.player.AddPlayer"
+        title="concertina.player: Add Player"
+    />
+
+        
 
   </configure>
 
