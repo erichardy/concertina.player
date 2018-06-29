@@ -43,5 +43,13 @@
       />
 
   <!-- -*- extra stuff goes here -*- -->
+  <!--  got from dexterity.membrane.behavior.user -->
+  <plone:behavior
+      title="Player Name from full name"
+      description="Use the player full name as name (basis for the id)"
+      provides="concertina.player.content.player.IPlayerNameFromFullName"
+      factory="dexterity.membrane.behavior.user.NameFromFullName"
+      for="concertina.player.content.player.IPlayer"
+      />
 
 </configure>

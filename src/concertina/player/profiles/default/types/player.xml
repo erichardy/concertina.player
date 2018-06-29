@@ -39,7 +39,8 @@
      <element value="plone.app.dexterity.behaviors.metadata.IPublication" />
      <element value="plone.app.dexterity.behaviors.metadata.IOwnership" />
      <!--element value="plone.app.content.interfaces.INameFromTitle" /-->
-     <element value="dexterity.membrane.behavior.user.INameFromFullName" />
+     <!-- element value="dexterity.membrane.behavior.user.INameFromFullName" /> -->
+     <element value="concertina.player.content.player.IPlayerNameFromFullName" />
      <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />
      <element value="dexterity.membrane.behavior.user.IMembraneUser" />
      <element value="dexterity.membrane.behavior.password.IProvidePasswords" />
