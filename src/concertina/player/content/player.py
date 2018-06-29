@@ -2,8 +2,8 @@
 # from plone.app.textfield import RichText
 # from plone.autoform import directives
 from concertina.player import _
-from dexterity.membrane.content.member import IEmail
 from dexterity.membrane.behavior.user import INameFromFullName
+from dexterity.membrane.content.member import IEmail
 from plone.dexterity.content import Container
 # from plone.namedfile import field as namedfile
 # from plone.supermodel import model
@@ -22,12 +22,12 @@ class IPlayer(IEmail):
     """ Marker interface and Dexterity Python Schema for Player
     """
     first_name = schema.TextLine(
-        title=_(u"First Name"),
+        title=_(u'First Name'),
         required=True,
     )
 
     last_name = schema.TextLine(
-        title=_(u"Last Name"),
+        title=_(u'Last Name'),
         required=True,
     )
 
