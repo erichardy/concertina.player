@@ -3,7 +3,7 @@
   <permissions>
   <!-- -*- extra stuff goes here -*- -->
 
-    <permission name="concertina.player: Add Player" acquire="True">
+    <permission name="concertina.player: Add Music Player" acquire="True">
       <role name="Manager"/>
       <role name="Site Administrator"/>
       <role name="Owner"/>

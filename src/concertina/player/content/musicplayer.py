@@ -13,12 +13,12 @@ from zope import schema
 from zope.interface import implementer
 
 
-class IPlayerNameFromFullName(INameFromFullName):
+class IMusicPlayerNameFromFullName(INameFromFullName):
     """
     """
 
 
-class IPlayer(IEmail):
+class IMusicPlayer(IEmail):
     """ Marker interface and Dexterity Python Schema for Player
     """
     first_name = schema.TextLine(
@@ -67,7 +67,7 @@ class IPlayer(IEmail):
     # )
 
 
-@implementer(IPlayer)
-class Player(Container):
+@implementer(IMusicPlayer)
+class MusicPlayer(Container):
     """
     """

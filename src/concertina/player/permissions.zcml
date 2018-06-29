@@ -7,8 +7,8 @@
   <!-- -*- extra stuff goes here -*- -->
 
     <permission
-        id="concertina.player.AddPlayer"
-        title="concertina.player: Add Player"
+        id="concertina.player.AddMusicPlayer"
+        title="concertina.player: Add Music Player"
     />
 
         

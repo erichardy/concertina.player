@@ -47,9 +47,9 @@
   <plone:behavior
       title="Player Name from full name"
       description="Use the player full name as name (basis for the id)"
-      provides="concertina.player.content.player.IPlayerNameFromFullName"
+      provides="concertina.player.content.musicplayer.IMusicPlayerNameFromFullName"
       factory="dexterity.membrane.behavior.user.NameFromFullName"
-      for="concertina.player.content.player.IPlayer"
+      for="concertina.player.content.musicplayer.IMusicPlayer"
       />
 
 </configure>

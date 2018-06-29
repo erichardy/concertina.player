@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
 <object xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-    name="player"
+    name="musicplayer"
     meta_type="Dexterity FTI"
     i18n:domain="concertina.player">
 
   <!-- Basic properties -->
   <property
       i18n:translate=""
-      name="title">player</property>
+      name="title">music player</property>
   <property
       i18n:translate=""
-      name="description">Concertina player</property>
+      name="description">Music Player</property>
 
   <property name="allow_discussion">False</property>
-  <property name="factory">player</property>
+  <property name="factory">musicplayer</property>
   <property name="icon_expr"></property>
   <property name="link_target"></property>
 
@@ -27,11 +27,11 @@
   -->
   </property>
   <!-- Schema, class and security -->
-  <property name="add_permission">concertina.player.AddPlayer</property>
-  <property name="klass">concertina.player.content.player.Player</property>
+  <property name="add_permission">concertina.player.AddMusicPlayer</property>
+  <property name="klass">concertina.player.content.musicplayer.MusicPlayer</property>
   <property name="model_file"></property>
   <property name="model_source"></property>
-  <property name="schema">concertina.player.content.player.IPlayer</property>
+  <property name="schema">concertina.player.content.musicplayer.IMusicPlayer</property>
 
   <!-- Enabled behaviors -->
   <property name="behaviors" purge="false">
@@ -40,7 +40,7 @@
      <element value="plone.app.dexterity.behaviors.metadata.IOwnership" />
      <!--element value="plone.app.content.interfaces.INameFromTitle" /-->
      <!-- element value="dexterity.membrane.behavior.user.INameFromFullName" /> -->
-     <element value="concertina.player.content.player.IPlayerNameFromFullName" />
+     <element value="concertina.player.content.musicplayer.IMusicPlayerNameFromFullName" />
      <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />
      <element value="dexterity.membrane.behavior.user.IMembraneUser" />
      <element value="dexterity.membrane.behavior.password.IProvidePasswords" />
@@ -64,7 +64,7 @@
   </property>
 
   <!-- View information -->
-  <property name="add_view_expr">string:${folder_url}/++add++player</property>
+  <property name="add_view_expr">string:${folder_url}/++add++musicplayer</property>
   <property name="default_view">view</property>
   <property name="default_view_fallback">False</property>
   <property name="immediate_view">view</property>
