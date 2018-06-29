@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<object name="dexterity.membrane.member"
+   meta_type="Dexterity FTI"
+   i18n:domain="dexterity.membrane" xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+   purge="false">
+
+  <property name="global_allow">False</property>
+
+
+</object>
