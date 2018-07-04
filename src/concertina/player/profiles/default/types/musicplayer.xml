@@ -56,11 +56,15 @@
     -->
     <!--<element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />-->
     <!-- <element value="plone.app.lockingbehavior.behaviors.ILocking" /> -->
-    <!--<element value="plone.app.contenttypes.behaviors.leadimage.ILeadImage"/>-->
+    <element value="plone.app.contenttypes.behaviors.leadimage.ILeadImage"/>
     <!--<element value="plone.app.relationfield.behavior.IRelatedItems"/>-->
     <!--<element value="plone.app.versioningbehavior.behaviors.IVersionable" />-->
     <!--<element value="plone.app.contenttypes.behaviors.tableofcontents.ITableOfContents"/>-->
-    <!--<element value="plone.app.contenttypes.behaviors.richtext.IRichText"/>-->
+    <element value="plone.app.contenttypes.behaviors.richtext.IRichText"/>
+    <element value="eh.behaviors.thumbnail.IThumbnail" />
+    <element value="eh.behaviors.alt_texts.IAltTexts" />
+    <element value="collective.geolocationbehavior.geolocation.IGeolocatable" />
+    
   </property>
 
   <!-- View information -->

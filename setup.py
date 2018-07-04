@@ -46,6 +46,9 @@ setup(
         'setuptools',
         'z3c.jbot',
         'dexterity.membrane',
+        'eh.behaviors',
+        'collective.venue',
+        'z3c.unconfigure==1.0.1',  # constrains for collective.venue
     ],
     extras_require={
         'test': [

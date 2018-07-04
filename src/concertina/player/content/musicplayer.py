@@ -30,7 +30,16 @@ class IMusicPlayer(IEmail):
         title=_(u'Last Name'),
         required=True,
     )
-
+    """
+    a ajouter:
+    pseudo
+    adresse
+    tel fixe
+    tel mobile
+    site web perso
+    Choix d'afficher les info perso aux autres musiciens ?
+    liens social : facebook, twiter, google+, etc...
+    """
     # directives.widget(level=RadioFieldWidget)
     # level = schema.Choice(
     #     title=_(u'Sponsoring Level'),
