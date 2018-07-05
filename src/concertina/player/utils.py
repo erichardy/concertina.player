@@ -1,15 +1,13 @@
 # -*- coding: utf-8 -*-
 
+from concertina.player import _
 from plone import api
 from zope.interface import Invalid
 from zope.publisher.browser import BrowserView
+
 import logging
 import re
-from AccessControl.User import UnrestrictedUser as BaseUnrestrictedUser
-# from AccessControl import getSecurityManager
-from AccessControl.SecurityManagement import (
-    newSecurityManager, setSecurityManager)
-from concertina.player import _
+
 
 logger = logging.getLogger('mareetrad:dataset')
 checkEmail = re.compile(
@@ -20,27 +18,6 @@ def validateEmail(value):
     if not checkEmail(value):
         raise Invalid(_(u'Invalid adress email'))
     return True
-
-
-class UnrestrictedUser(BaseUnrestrictedUser):
-    """Unrestricted user that still has an id.
-    """
-    def getId(self):
-        """Return the ID of the user.
-        """
-        return 'AnonymousTrader'
-
-
-def setUnsecure(sm):
-    portal = api.portal.get()
-    tmp_user = UnrestrictedUser(
-        sm.getUser().getId(), '', ['Manager'], '')
-    tmp_user = tmp_user.__of__(portal.acl_users)
-    newSecurityManager(None, tmp_user)
-
-
-def setSecure(sm):
-    setSecurityManager(sm)
 
 
 def sorted_by_date(trader1, trader2):

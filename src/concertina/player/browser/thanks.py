@@ -1,19 +1,16 @@
 # -*- coding: utf-8 -*-
 
-from plone.app.uuid.utils import uuidToObject
-from zope.publisher.browser import BrowserView
+# from zope.interface import alsoProvides
+# from plone.protect.interfaces import IDisableCSRFProtection
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 # from plone.protect import CheckAuthenticator
 # from plone.protect import protect
 from plone import api
-# from zope.interface import alsoProvides
-# from plone.protect.interfaces import IDisableCSRFProtection
-from AccessControl import getSecurityManager
-from AccessControl.SecurityManagement import (
-    newSecurityManager, setSecurityManager)
-from AccessControl.User import UnrestrictedUser as BaseUnrestrictedUser
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
+from plone.app.uuid.utils import uuidToObject
 from Products.CMFPlone.utils import safe_unicode
+from zope.publisher.browser import BrowserView
+
 # from mareetrad.trader.utils import mareeTradMailActivated
 import logging
 
@@ -30,43 +27,28 @@ for_trader_txt = u"""
 """
 
 
-class UnrestrictedUser(BaseUnrestrictedUser):
-    """Unrestricted user that still has an id.
-    """
-    def getId(self):
-        """Return the ID of the user.
-        """
-        return 'AnonymousTrader'
-
-
 class thanksMusicplayerView(BrowserView):
 
     def getMusicplayer(self):
         # alsoProvides(self.request, IDisableCSRFProtection)
-        portal = api.portal.get()
-        sm = getSecurityManager()
-        self.musicplayer = {}
-        # logger.info(self.request.form)
-        uuid = self.request.get('uuid')
-        tmp_user = UnrestrictedUser(
-            sm.getUser().getId(), '', ['Manager'], '')
-        tmp_user = tmp_user.__of__(portal.acl_users)
-        newSecurityManager(None, tmp_user)
-        obj = uuidToObject(uuid)
-        # logger.info(obj.getId())
-        self.musicplayer = {}
-        self.musicplayer['title'] = obj.title
-        self.musicplayer['email'] = obj.title
-        self.musicplayer['last_name'] = obj.last_name
-        self.musicplayer['firstname'] = obj.firstname
-        self.musicplayer['pseudo'] = obj.pseudo
-        self.musicplayer['mobile'] = obj.mobile
-        self.musicplayer['reg_date'] = obj.register_date.strftime(
-            '%d/%m/%Y %H:%M'
-            )
-        self.musicplayer['html'] = obj.aq_parent.for_traders
+        with api.env.adopt_roles(['Manager']):
+            self.musicplayer = {}
+            # logger.info(self.request.form)
+            uuid = self.request.get('uuid')
+            obj = uuidToObject(uuid)
+            # logger.info(obj.getId())
+            self.musicplayer = {}
+            self.musicplayer['title'] = obj.title
+            self.musicplayer['email'] = obj.title
+            self.musicplayer['last_name'] = obj.last_name
+            self.musicplayer['firstname'] = obj.firstname
+            self.musicplayer['pseudo'] = obj.pseudo
+            self.musicplayer['mobile'] = obj.mobile
+            self.musicplayer['reg_date'] = obj.register_date.strftime(
+                '%d/%m/%Y %H:%M'
+                )
+            self.musicplayer['html'] = obj.aq_parent.for_traders
 
-        setSecurityManager(sm)
         return self.musicplayer
 
     def getHTMLContent(self, musicplayer):

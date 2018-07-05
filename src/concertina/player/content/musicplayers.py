@@ -1,28 +1,25 @@
 # -*- coding: utf-8 -*-
 
+from collective import dexteritytextindexer
+from concertina.player.utils import _
+from concertina.player.utils import sorted_by_date
+from concertina.player.utils import validateEmail
 from plone import api
-import datetime
-from plone.dexterity.content import Container
 from plone.app.textfield import RichText
-
+from plone.dexterity.content import Container
 from plone.supermodel import model
+# from Products.CMFPlone.utils import safe_unicode
 from Products.Five import BrowserView
 from zope import schema
+from zope.component import getUtility
 from zope.interface import implementer
 from zope.interface import provider
 from zope.schema.interfaces import IContextAwareDefaultFactory
-from collective import dexteritytextindexer
-from AccessControl import getSecurityManager
-import logging
 from zope.schema.interfaces import IVocabularyFactory
-from zope.component import getUtility
-from Products.CMFPlone.utils import safe_unicode
 
-from concertina.player.utils import validateEmail
-from concertina.player.utils import setUnsecure
-from concertina.player.utils import setSecure
-from concertina.player.utils import sorted_by_date
-from concertina.player.utils import _
+import datetime
+import logging
+
 
 logger = logging.getLogger('concertina.player:musicplayers')
 
@@ -178,24 +175,22 @@ class musicplayers(Container):
 
     def getMusicplayers(self, byDate=False):
         """
-        used in view for all traders, so private fields are not returned
+        used in view for all musicplayers, so private fields are not returned
         """
-        sm = getSecurityManager()
-        setUnsecure(sm)
-        traders_found = api.content.find(
+        players_found = api.content.find(
             context=self,
-            portal_type='trader',
+            portal_type='musicplayer',
             )
         if byDate:
-            tradersObjs = sorted(
-                [t.getObject() for t in traders_found],
+            playersObjs = sorted(
+                [t.getObject() for t in players_found],
                 sorted_by_date
                 )
         else:
-            tradersObjs = [t.getObject() for t in traders_found]
-        traders = []
+            playersObjs = [t.getObject() for t in players_found]
+        players = []
         i = 1
-        for t in tradersObjs:
+        for t in playersObjs:
             tr = {}
             tr['number'] = str(i)
             tr['pseudo'] = t.pseudo
@@ -207,9 +202,8 @@ class musicplayers(Container):
                 # tr['instrument'] = t.instrument
             i += 1
             tr['date'] = t.register_date.strftime('%d/%m/%Y %H:%M')
-            traders.append(tr)
-        setSecure(sm)
-        return traders
+            players.append(tr)
+        return players
 
     def getPrologue(self):
         try:
