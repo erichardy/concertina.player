@@ -18,4 +18,11 @@
       directory="static"
       />
 
+  <browser:page
+      name="thanks_musicplayer_view"
+      for="*"
+      class=".thanks.thanksMusicplayerView"
+      template="thanksmusicplayerview.pt"
+      permission="zope2.View"
+      />
 </configure>

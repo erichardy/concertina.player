@@ -1,0 +1,56 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/@@standard_macros/page"
+      i18n:domain="concertina.player">
+
+<span tal:replace="nothing">plone.z3cform-0.9.1-py2.7.egg/plone/z3cform/templates/form.pt</span>
+<metal:block fill-slot="body">
+<style>
+
+</style>
+<metal:block use-macro="context/@@ploneform-macros/titlelessform" />
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#form-widgets-other_instrument').val('autre');
+    var intrument = $('#form-widgets-instrument').val();
+	$('#formfield-form-widgets-other_instrument').hide();
+	if (intrument == 'autre') {
+		$('#formfield-form-widgets-other_instrument').show()
+	}
+    $('#form-widgets-instrument').change(function(){
+    	newVal = $(this).val();
+    	if (newVal == "autre") {
+    		$('#formfield-form-widgets-other_instrument').show();
+    		$('#form-widgets-other_instrument').val('');
+    	} else {
+    		$('#formfield-form-widgets-other_instrument').hide();
+    		$('#form-widgets-other_instrument').val('autre');
+    	}
+    })
+    // id="form-widgets-accept_movie-0"
+    // id="form-widgets-accept_pay-0"
+    // form-buttons-register
+    $('#form-buttons-register').click(function(e){
+    	onMovie = $('#form-widgets-accept_movie-0').is(':checked');
+    	if (onMovie != true){
+    		alert("Pour participer à la Marée-Trad, vous devez accepter d'être filmé-e");
+    		e.preventDefault();
+    	}
+        toPay = $('#form-widgets-accept_pay-0').is(':checked');
+        if (toPay != true){
+            alert("Pour participer à la Marée-Trad, vous devez accepter de participer aux frais d'organisation");
+            e.preventDefault();
+        }
+    })
+});
+</script>
+
+</metal:block>
+
+
+
+</html>
