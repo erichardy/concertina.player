@@ -35,18 +35,24 @@ class thanksMusicplayerView(BrowserView):
             self.musicplayer = {}
             # logger.info(self.request.form)
             uuid = self.request.get('uuid')
+            # import pdb;pdb.set_trace()
             obj = uuidToObject(uuid)
             # logger.info(obj.getId())
             self.musicplayer = {}
-            self.musicplayer['title'] = obj.title
-            self.musicplayer['email'] = obj.title
+            self.musicplayer['email'] = obj.email
             self.musicplayer['last_name'] = obj.last_name
-            self.musicplayer['firstname'] = obj.firstname
+            self.musicplayer['firstname'] = obj.first_name
             self.musicplayer['pseudo'] = obj.pseudo
             self.musicplayer['mobile'] = obj.mobile
             self.musicplayer['reg_date'] = obj.register_date.strftime(
                 '%d/%m/%Y %H:%M'
                 )
+            self.musicplayer['mails_activated'] = obj.aq_parent.mails_activated
+            self.musicplayer['sender'] = obj.aq_parent.sender_registration
+            send_notification = obj.aq_parent.send_notification
+            self.musicplayer['send_notification'] = send_notification
+            mail_notification = obj.aq_parent.mail_notification
+            self.musicplayer['mail_notification'] = mail_notification
             self.musicplayer['html'] = obj.aq_parent.for_traders
 
         return self.musicplayer
@@ -62,7 +68,7 @@ class thanksMusicplayerView(BrowserView):
         content += u'Prénom: ' + musicplayer['firstname'] + u'<br />'
         content += u'email: ' + musicplayer['email'] + u'<br />'
         content += u'Pseudo: ' + musicplayer['pseudo'] + u'<br />'
-        content += u'Tel: ' + musicplayer['mobile'] + u'<br />'
+        # content += u'Tel: ' + musicplayer['mobile'] + u'<br />'
         content += u'<br /><br />'
         content += u'Inscription réalisée le : '
         content += musicplayer['reg_date'] + u'<br />'

@@ -10,11 +10,11 @@
 
 <metal:main fill-slot="main">
 <span tal:replace="structure context/@@authenticator/authenticator"/>
-  <div tal:define="tr view/getTrader;
-                   htmlContent python:view.getHTMLContent(tr);
-                   sender python:tr['sender'];
-                   mail python:view.sendToTrader(tr['mails_activated'], htmlContent, tr['email'], sender);
-                   notification python:view.sendNotification(tr['send_notification'], htmlContent, tr['mail_notification'], sender);
+  <div tal:define="mp view/getMusicplayer;
+                   htmlContent python:view.getHTMLContent(mp);
+                   sender python:mp['sender'];
+                   mail python:view.sendToMusicplayer(mp['mails_activated'], htmlContent, mp['email'], sender);
+                   notification python:view.sendNotification(mp['send_notification'], htmlContent, mp['mail_notification'], sender);
                    ">
     <h1 class="documentFirstHeading" i18n:translate="">Thanks to register !</h1>
 

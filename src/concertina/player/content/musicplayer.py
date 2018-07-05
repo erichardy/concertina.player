@@ -32,6 +32,12 @@ class IMusicPlayerNameFromFullName(INameFromFullName):
 class IMusicPlayer(IEmail):
     """ Marker interface and Dexterity Python Schema for Player
     """
+    pseudo = schema.TextLine(
+        title=_(u'your pseudo'),
+        description=_(u'pseudo_description'),
+        required=True,
+    )
+
     first_name = schema.TextLine(
         title=_(u'First Name'),
         required=True,
@@ -41,6 +47,17 @@ class IMusicPlayer(IEmail):
         title=_(u'Last Name'),
         required=True,
     )
+    phone = schema.TextLine(
+        title=_(u'plone number'),
+        description=_(u'phone_description'),
+        required=False,
+    )
+    mobile = schema.TextLine(
+        title=_(u'mobile number'),
+        description=_(u'mobile_description'),
+        required=False,
+    )
+
     """
     a ajouter:
     pseudo
