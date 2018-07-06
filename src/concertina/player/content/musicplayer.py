@@ -75,7 +75,9 @@ class IMusicPlayer(IEmail):
         required=False,
         # defaultFactory=registerDate
         )
-
+    """
+    coordonnees : context.geolocation.latitude , context.geolocation.longitude
+    """
     # directives.widget(level=RadioFieldWidget)
     # level = schema.Choice(
     #     title=_(u'Sponsoring Level'),
@@ -115,6 +117,7 @@ class IMusicPlayer(IEmail):
 @implementer(IMusicPlayer)
 class MusicPlayer(Container):
     """
+    3 workflow states for a musicplayer : 'pending', 'enabled', 'disabled'
     """
 
 

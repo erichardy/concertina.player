@@ -35,7 +35,6 @@ class thanksMusicplayerView(BrowserView):
             self.musicplayer = {}
             # logger.info(self.request.form)
             uuid = self.request.get('uuid')
-            # import pdb;pdb.set_trace()
             obj = uuidToObject(uuid)
             # logger.info(obj.getId())
             self.musicplayer = {}
@@ -43,6 +42,7 @@ class thanksMusicplayerView(BrowserView):
             self.musicplayer['last_name'] = obj.last_name
             self.musicplayer['firstname'] = obj.first_name
             self.musicplayer['pseudo'] = obj.pseudo
+            self.musicplayer['phone'] = obj.mobile
             self.musicplayer['mobile'] = obj.mobile
             self.musicplayer['reg_date'] = obj.register_date.strftime(
                 '%d/%m/%Y %H:%M'
@@ -85,7 +85,7 @@ class thanksMusicplayerView(BrowserView):
         message = MIMEMultipart()
         part = MIMEText(safe_unicode(htmlContent), u'html', _charset='utf-8')
         message.attach(part)
-        subject = u'[Marée Trad] Votre inscription'
+        subject = u'[Concertina.fr] Votre inscription au site'
         try:
             api.portal.send_email(sender,
                                   recipient=recipient,
@@ -104,7 +104,7 @@ class thanksMusicplayerView(BrowserView):
             return
         message = MIMEMultipart()
         messageContent = u'<h3>Une nouvelle inscription'
-        messageContent += u' à la marée trad :</h3>'
+        messageContent += u' au site concertina.fr :</h3>'
         messageContent += u'<br />'
         messageContent += htmlContent
         part = MIMEText(
@@ -112,7 +112,7 @@ class thanksMusicplayerView(BrowserView):
             u'html',
             _charset='utf-8')
         message.attach(part)
-        subject = u'[Marée Trad] Nouvelle inscription...'
+        subject = u'[Concertina.fr] Nouvelle inscription...'
         try:
             api.portal.send_email(sender,
                                   recipient=recipient,

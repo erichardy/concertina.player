@@ -79,7 +79,13 @@
       />
       -->
 
-
+<!-- see https://github.com/sithmel/Products.Maps/blob/master/Products/Maps/configure.zcml -->
+  <browser:page
+  	name="maps_configuration"
+  	for="*"
+  	class=".maps_configuration.mapConfiguration"
+  	permission="zope2.View"
+  />
   <!-- Events -->
   <subscriber
     for="concertina.player.content.musicplayer.IMusicPlayer
