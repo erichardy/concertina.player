@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<object name="portal_controlpanel"
+    i18n:domain="plone"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+ 
+ <configlet
+    title="Misc configuration parameters for concertina player"
+    action_id="concertina.player"
+    appId="concertina.player"
+    category="Products"
+    condition_expr=""
+    url_expr="string:${portal_url}/@@concertina-player-config"
+    visible="True" i18n:attributes="title">
+	<permission>Manage portal</permission>
+  </configlet>
+ 
+</object>

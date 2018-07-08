@@ -1,40 +1,16 @@
 # -*- coding: utf-8 -*-
 
-from concertina.player import _
+from concertina.player.interfaces import IConcertinaPlayerSettings
 from plone import api
 from zope.interface import Attribute
 from zope.interface import implementer
 from zope.interface import Interface
 from zope.publisher.browser import BrowserView
-from zope.schema import ASCIILine
-from zope.schema import Int
 
 import logging
 
 
 logger = logging.getLogger('collective.player:maps_configuration')
-
-
-class IDefaultMapsParams(Interface):
-    """
-    records registry
-    Ars : 46.601071219913514, 2.0026445388793945
-    Milizac = 48.469279317167164, -4.5648193359375
-    """
-    latitude = ASCIILine(
-        title=_(u'default latitude'),
-        default='46.601071219913514',
-        required=True,
-        )
-    longitude = ASCIILine(
-        title=_(u'default longitude'),
-        default='2.0026445388793945',
-        required=True,
-        )
-    zoom = Int(
-        title=_(u'default zoom'),
-        default=7,
-        )
 
 
 class ImapConfiguration(Interface):
@@ -46,15 +22,20 @@ class ImapConfiguration(Interface):
 
 @implementer(ImapConfiguration)
 class mapConfiguration(BrowserView):
+    """
+    We need to create here a multi-adapter which is used to configure
+    default parameters for the map.
+    It misses the zoom configuration....????
+    """
     def __init__(self, context, request):
         self.context = context
         self.request = request
         xlatitude = api.portal.get_registry_record(
             'latitude',
-            interface=IDefaultMapsParams)
+            interface=IConcertinaPlayerSettings)
         xlongitude = api.portal.get_registry_record(
             'longitude',
-            interface=IDefaultMapsParams)
+            interface=IConcertinaPlayerSettings)
         try:
             latitude = float(xlatitude)
         except Exception:
@@ -71,5 +52,5 @@ class mapConfiguration(BrowserView):
         https://github.com/sithmel/Products.Maps/blob/master/\
         Products/Maps/browser/config.py
         """
-        logger.info('dans maps config !!!')
+        # logger.info('dans maps config !!!')
         return self.default_loc

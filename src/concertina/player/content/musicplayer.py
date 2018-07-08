@@ -57,13 +57,24 @@ class IMusicPlayer(IEmail):
         description=_(u'mobile_description'),
         required=False,
     )
+    instrument = schema.Choice(
+        title=_(u'instrument played'),
+        description=_(u'you can choose "Other"'),
+        source='player.instruments',
+        default=u'',
+        required=True,
+        )
+    music = schema.Choice(
+        title=_(u'music played'),
+        description=_(u'you can choose "Other"'),
+        source='player.musics',
+        default=u'',
+        required=True,
+        )
 
     """
     a ajouter:
-    pseudo
     adresse
-    tel fixe
-    tel mobile
     site web perso
     Choix d'afficher les info perso aux autres musiciens ?
     liens social : facebook, twiter, google+, etc...

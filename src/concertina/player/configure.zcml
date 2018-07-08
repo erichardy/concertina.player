@@ -44,6 +44,13 @@
       />
 
   <!-- -*- extra stuff goes here -*- -->
+  <!-- Control panel -->
+  <browser:page
+    name="concertina-player-config"
+    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+    class=".controlpanel.IMareetradTraderSettingsFormControlPanel"
+    permission="cmf.ManagePortal"
+    />
   <!--  got from dexterity.membrane.behavior.user -->
   <plone:behavior
       title="Player Name from full name"
@@ -93,5 +100,8 @@
     handler="concertina.player.events.setMusicplayerRegistrationDate"
     />
 
+  <!-- utilities -->
+  <utility component=".vocabulary.Instruments" name="player.instruments" />
+  <utility component=".vocabulary.Musics" name="player.musics" />
 
 </configure>
