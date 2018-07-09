@@ -21,7 +21,7 @@ from z3c.form.interfaces import IEditForm
 from z3c.form.interfaces import INPUT_MODE
 # from plone.z3cform.fieldsets.utils import move
 from zope import schema
-from zope.componen import adapter
+from zope.component import adapter
 from zope.interface import implementer
 from zope.interface import Interface
 
