@@ -11,10 +11,15 @@
 <style>
 
 </style>
+
+<metal:block fill-slot="formtop">
+   dans le form TOP
+</metal:block>
 <metal:block use-macro="context/@@ploneform-macros/titlelessform" />
 
 <script type="text/javascript">
 $(document).ready(function(){
+	
 	$('#form-widgets-other_instrument').val('autre');
     var intrument = $('#form-widgets-instrument').val();
 	$('#formfield-form-widgets-other_instrument').hide();
@@ -45,12 +50,12 @@ $(document).ready(function(){
             alert("Pour participer à la Marée-Trad, vous devez accepter de participer aux frais d'organisation");
             e.preventDefault();
         }
-    })
+    });
+    $('a#autotoc-item-autotoc-4').html('Mot de passe');
 });
 </script>
 
 </metal:block>
-
 
 
 </html>

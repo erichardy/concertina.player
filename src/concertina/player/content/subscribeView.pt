@@ -1,0 +1,25 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="concertina.player">
+
+<span tal:replace="nothing">plone.z3cform-0.9.1-py2.7.egg/plone/z3cform/templates/form.pt</span>
+<metal:block fill-slot="body">
+<style>
+
+</style>
+
+
+<tal:main-macro metal:define-macro="main" >
+<div id="content">
+  <metal:block use-macro="context/@@ploneform-macros/titlelessform" />
+</div>
+</tal:main-macro>
+
+</metal:block>
+
+
+</html>

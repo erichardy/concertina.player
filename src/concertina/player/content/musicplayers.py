@@ -13,11 +13,11 @@ from Products.Five import BrowserView
 from zope import schema
 from zope.component import getUtility
 from zope.interface import implementer
-from zope.interface import provider
-from zope.schema.interfaces import IContextAwareDefaultFactory
+# from zope.interface import provider
+# from zope.schema.interfaces import IContextAwareDefaultFactory
 from zope.schema.interfaces import IVocabularyFactory
 
-import datetime
+# import datetime
 import logging
 
 
@@ -30,11 +30,6 @@ for_trader_txt = u"""
 <p>Vous serez averti de la suite des événements plus tard</p>
 <p> </p>
 """
-
-
-@provider(IContextAwareDefaultFactory)
-def registerDate(context):
-    return datetime.datetime.today()
 
 
 class IMusicplayers(model.Schema):

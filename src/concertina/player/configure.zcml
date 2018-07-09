@@ -85,6 +85,13 @@
       permission="zope2.View"
       />
       -->
+    <adapter factory=".content.musicplayer.QueryFormAdapter"/>
+    <browser:page
+      name="subscribe"
+      for="*"
+      class=".content.musicplayer.subscribeForm"
+      permission="zope2.View"
+      />
 
 <!-- see https://github.com/sithmel/Products.Maps/blob/master/Products/Maps/configure.zcml -->
 <!--  see plone.formwidget.geolocation.widget.py -->
