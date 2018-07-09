@@ -162,6 +162,8 @@ class subscribeForm(AutoExtensibleForm, form.Form):
         super(form.Form, self).updateWidgets()
         self.widgets['instrument'].mode = HIDDEN_MODE
         self.widgets['music'].mode = HIDDEN_MODE
+        self.widgets['phone'].mode = HIDDEN_MODE
+        self.widgets['mobile'].mode = HIDDEN_MODE
 
     @button.buttonAndHandler(_(u'Subscribe'), name='subscribe')
     def handleApply(self, action):

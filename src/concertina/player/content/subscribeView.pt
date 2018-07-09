@@ -7,6 +7,7 @@
       i18n:domain="concertina.player">
 
 <span tal:replace="nothing">plone.z3cform-0.9.1-py2.7.egg/plone/z3cform/templates/form.pt</span>
+
 <metal:block fill-slot="body">
 <style>
 
@@ -15,7 +16,18 @@
 
 <tal:main-macro metal:define-macro="main" >
 <div id="content">
-  <metal:block use-macro="context/@@ploneform-macros/titlelessform" />
+	<metal:block use-macro="context/@@ploneform-macros/titlelessform">
+		<metal:formtop fill-slot="formtop">
+		  <h3>Top !</h3>
+		</metal:formtop>
+		<metal:blockbeforeactions fill-slot="beforeactions">
+		  <h3>Before the action...</h3>
+		</metal:blockbeforeactions>
+
+		<metal:formbottom fill-slot="formbottom">
+		  <h3>Bottom... !</h3>
+		</metal:formbottom>
+   </metal:block>
 </div>
 </tal:main-macro>
 
