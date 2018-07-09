@@ -2,6 +2,7 @@
 # from plone.app.textfield import RichText
 # from plone.autoform import directives
 from concertina.player import _
+from concertina.player.utils import normalize
 from dexterity.membrane.behavior.user import INameFromFullName
 from dexterity.membrane.content.member import IEmail
 from plone import api
@@ -36,35 +37,44 @@ class IMusicPlayerNameFromFullName(INameFromFullName):
     """
 
 
-class IMusicPlayer(IEmail):
+class ISubscriber(IEmail):
     """ Marker interface and Dexterity Python Schema for Player
     """
     pseudo = schema.TextLine(
         title=_(u'your pseudo'),
         description=_(u'pseudo_description'),
         required=True,
-    )
+        )
 
     first_name = schema.TextLine(
         title=_(u'First Name'),
         required=True,
-    )
+        )
 
     last_name = schema.TextLine(
         title=_(u'Last Name'),
         required=True,
-    )
+        )
+    directives.omitted('register_date')
+    directives.no_omit(IEditForm, 'register_date',)
+    register_date = schema.Datetime(
+        title=_(u'registring date'),
+        required=False,
+        # defaultFactory=registerDate
+        )
+
+
+class IMusicPlayer(ISubscriber):
     phone = schema.TextLine(
         title=_(u'plone number'),
         description=_(u'phone_description'),
         required=False,
-    )
+        )
     mobile = schema.TextLine(
         title=_(u'mobile number'),
         description=_(u'mobile_description'),
         required=False,
-    )
-
+        )
     directives.read_permission(instrument='cmf.ModifyPortalContent')
     directives.write_permission(instrument='cmf.ModifyPortalContent')
     instrument = schema.Choice(
@@ -72,7 +82,7 @@ class IMusicPlayer(IEmail):
         description=_(u'you can choose "Other"'),
         source='player.instruments',
         default=u'',
-        required=True,
+        required=False,
         )
     directives.read_permission(music='cmf.ModifyPortalContent')
     directives.write_permission(music='cmf.ModifyPortalContent')
@@ -81,7 +91,7 @@ class IMusicPlayer(IEmail):
         description=_(u'you can choose "Other"'),
         source='player.musics',
         default=u'',
-        required=True,
+        required=False,
         )
 
     """
@@ -91,13 +101,6 @@ class IMusicPlayer(IEmail):
     Choix d'afficher les info perso aux autres musiciens ?
     liens social : facebook, twiter, google+, etc...
     """
-    directives.omitted('register_date')
-    directives.no_omit(IEditForm, 'register_date',)
-    register_date = schema.Datetime(
-        title=_(u'registring date'),
-        required=False,
-        # defaultFactory=registerDate
-        )
     """
     coordonnees : context.geolocation.latitude , context.geolocation.longitude
     """
@@ -148,7 +151,7 @@ class subscribeForm(AutoExtensibleForm, form.Form):
     """
     https://z3cform.readthedocs.io/en/latest/mustread/form.html#
     """
-    schema = IMusicPlayer
+    schema = ISubscriber
     ignoreContext = True
     label = _(u'subscribe form')
     description = _(u'This form is used for subscriptions')
@@ -160,10 +163,6 @@ class subscribeForm(AutoExtensibleForm, form.Form):
 
     def updateWidgets(self):
         super(form.Form, self).updateWidgets()
-        self.widgets['instrument'].mode = HIDDEN_MODE
-        self.widgets['music'].mode = HIDDEN_MODE
-        self.widgets['phone'].mode = HIDDEN_MODE
-        self.widgets['mobile'].mode = HIDDEN_MODE
 
     @button.buttonAndHandler(_(u'Subscribe'), name='subscribe')
     def handleApply(self, action):
@@ -173,6 +172,19 @@ class subscribeForm(AutoExtensibleForm, form.Form):
             if errors:
                 self.status = _('Please correct errors')
                 return
+            #  il faut verifier que l'adresse mail n'existe pas
+            # deja quelque part. Il ne suffit pas de verifier
+            # que l'Id est present dans le container...
+            obj = api.content.create(
+                type='musicplayer',
+                id=normalize(data['email']),
+                email=data['email'],
+                pseudo=data['pseudo'],
+                first_name=data['first_name'],
+                last_name=data['first_name'],
+                container=self.context
+                )
+            obj.reindexObject()
             """
             obj = self.createAndAdd(data)
             uuid = api.content.get_uuid(obj=obj)

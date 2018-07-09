@@ -2,6 +2,8 @@
 
 from concertina.player import _
 from plone import api
+from plone.i18n.normalizer.interfaces import INormalizer
+from zope.component import getUtility
 from zope.interface import Invalid
 from zope.publisher.browser import BrowserView
 
@@ -9,9 +11,14 @@ import logging
 import re
 
 
-logger = logging.getLogger('mareetrad:dataset')
+logger = logging.getLogger('concertina.player:utils')
 checkEmail = re.compile(
     r'[a-zA-Z0-9._%-]+@([a-zA-Z0-9-]+\.)*[a-zA-Z]{2,4}').match
+
+
+def normalize(value):
+    normalizer = getUtility(INormalizer)
+    return normalizer.normalize(value, locale='fr')
 
 
 def validateEmail(value):
