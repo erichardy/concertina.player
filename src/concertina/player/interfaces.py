@@ -49,7 +49,7 @@ class IConcertinaPlayerSettings(model.Schema):
     model.fieldset('music',
                    label=_(u'Music'),
                    fields=['instruments',
-                           'musics_type',
+                           'musics',
                            ])
     instruments = Text(
         title=_(u'list of instruments'),
@@ -57,7 +57,7 @@ class IConcertinaPlayerSettings(model.Schema):
         default=default_instruments,
         required=True,
         )
-    musics_type = Text(
+    musics = Text(
         title=_(u'list of music types'),
         description=_(u'one type name per line'),
         default=default_music_types,

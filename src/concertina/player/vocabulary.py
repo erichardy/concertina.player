@@ -52,7 +52,7 @@ class _Musics(object):
     def __call__(self, context):
         terms = []
         xx_musics = api.portal.get_registry_record(
-                'musics_type',
+                'musics',
                 interface=IConcertinaPlayerSettings)
         return make_voc_with_blank(terms, xx_musics)
 

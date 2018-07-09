@@ -87,6 +87,7 @@
       -->
 
 <!-- see https://github.com/sithmel/Products.Maps/blob/master/Products/Maps/configure.zcml -->
+<!--  see plone.formwidget.geolocation.widget.py -->
   <browser:page
   	name="maps_configuration"
   	for="*"
@@ -99,7 +100,16 @@
     	 zope.lifecycleevent.IObjectAddedEvent"
     handler="concertina.player.events.setMusicplayerRegistrationDate"
     />
-
+  <subscriber
+    for="concertina.player.content.musicplayer.IMusicPlayer
+    	 zope.lifecycleevent.IObjectAddedEvent"
+    handler="concertina.player.events.sendNotification"
+    />
+  <subscriber
+    for="concertina.player.content.musicplayer.IMusicPlayer
+    	 zope.lifecycleevent.IObjectAddedEvent"
+    handler="concertina.player.events.sendConfirmation"
+    />
   <!-- utilities -->
   <utility component=".vocabulary.Instruments" name="player.instruments" />
   <utility component=".vocabulary.Musics" name="player.musics" />

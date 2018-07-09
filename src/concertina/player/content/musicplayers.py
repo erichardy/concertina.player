@@ -40,6 +40,28 @@ def registerDate(context):
 class IMusicplayers(model.Schema):
     """ Marker interfce and Dexterity Python Schema for Musicplayers
     """
+    model.fieldset('title',
+                   label=_(u'Title'),
+                   fields=[
+                       'title',
+                       'description',
+                       ]
+                   )
+    title = schema.TextLine(
+        title=_(u'label_title', default=u'Title'),
+        required=True
+    )
+
+    description = schema.Text(
+        title=_(u'label_description', default=u'Summary'),
+        description=_(
+            u'help_description',
+            default=u'Used in item listings and search results.'
+        ),
+        required=False,
+        missing_value=u'',
+    )
+
     model.fieldset('mail',
                    label=_('mails'),
                    fields=[
@@ -88,14 +110,14 @@ class IMusicplayers(model.Schema):
     model.fieldset('textx',
                    label=_('musicplayers list texts'),
                    fields=[
-                       'before',
-                       'after',
+                       'text_before',
+                       'text_after',
                        ])
-    before = RichText(
+    text_before = RichText(
         title=_(u'text before the players list'),
         required=False
         )
-    after = RichText(
+    text_after = RichText(
         title=_(u'text after the players list'),
         required=False
         )
